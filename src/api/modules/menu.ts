@@ -1,14 +1,14 @@
 import { ResPage } from "@/api/interface/index";
-import { Notice } from "@/api/interface/noticeModel";
+import { MenuModel } from "@/api/interface/menuModel";
 import { PORT1 } from "@/api/config/servicePort";
 import http from "@/api";
 
 /**
- * 公告
+ * 菜单权限
  */
 // 获取列表
-export const getList = (params: Notice.ReqParams) => {
-  return http.get<ResPage<Notice.ResList>>(PORT1 + `/notice`, params);
+export const getTreeList = (params: MenuModel.ReqParams) => {
+  return http.get<ResPage<MenuModel.ResList>>(PORT1 + `/menu/list`, params);
 };
 
 // 新增
@@ -29,9 +29,4 @@ export const deleteInfo = (params: { id: string[] }) => {
 // 切换状态
 export const changeInfoStatus = (params: { id: string; status: number }) => {
   return http.post(PORT1 + `/notice/change`, params);
-};
-
-// 导出数据
-export const exportInfo = (params: Notice.ReqParams) => {
-  return http.download(PORT1 + `/user/export`, params);
 };

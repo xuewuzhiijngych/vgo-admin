@@ -1,5 +1,5 @@
 import { ReqPage } from "@/api/interface/index";
-// 公告管理模块
+// 公告模型
 export namespace Notice {
   export interface ReqParams extends ReqPage {
     title: string;
@@ -15,9 +15,5 @@ export namespace Notice {
     status: number;
     content: string;
     remark: string;
-  }
-  export interface ResStatus {
-    userLabel: string;
-    userValue: number;
   }
 }

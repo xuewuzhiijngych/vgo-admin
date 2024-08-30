@@ -27,9 +27,9 @@ import ProTable from "@/components/ProTable/index.vue";
 import { ProTableInstance, ColumnProps } from "@/components/ProTable/interface";
 import { CirclePlus, Delete, Download, View, EditPen } from "@element-plus/icons-vue";
 import { getList, deleteInfo, exportInfo, addInfo, editInfo, changeInfoStatus } from "@/api/modules/notice";
-import { getStatus } from "@/api/modules/common";
 import NoticeFormDrawer from "@/views/cms/notice/NoticeFormDrawer.vue";
 import { useAuthButtons } from "@/hooks/useAuthButtons";
+import { userStatus } from "@/utils/dict";
 
 // ProTable 实例
 const proTable = ref<ProTableInstance>();
@@ -85,7 +85,7 @@ const columns = reactive<ColumnProps<Notice.ResList>[]>([
   {
     prop: "status",
     label: "状态",
-    enum: getStatus,
+    enum: userStatus,
     search: { el: "tree-select", props: { filterable: true } },
     fieldNames: { label: "Label", value: "Status" },
     render: scope => {
