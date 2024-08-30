@@ -29,4 +29,9 @@ export namespace MenuModel {
     meta: object;
     children: ResList[];
   }
+  export interface ResTreeList {
+    value: string;
+    label: string;
+    children: ResTreeList[];
+  }
 }

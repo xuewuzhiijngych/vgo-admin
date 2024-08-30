@@ -1,29 +1,27 @@
 <template>
-  <div class="main-box">
-    <div class="table-box">
-      <ProTable
-        ref="proTable"
-        row-key="id"
-        :indent="20"
-        :columns="columns"
-        :request-api="getTreeList"
-        :request-auto="true"
-        :data-callback="dataCallback"
-        :search-col="{ xs: 1, sm: 1, md: 2, lg: 3, xl: 3 }"
-      >
-        <!-- 表格 header 按钮 -->
-        <template #tableHeader>
-          <el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增</el-button>
-        </template>
-        <!-- 表格操作 -->
-        <template #operation="scope">
-          <el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)">查看</el-button>
-          <el-button type="primary" link :icon="EditPen" @click="openDrawer('编辑', scope.row)">编辑</el-button>
-          <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
-        </template>
-      </ProTable>
-      <UserDrawer ref="drawerRef" />
-    </div>
+  <div class="table-box">
+    <ProTable
+      ref="proTable"
+      row-key="id"
+      :indent="20"
+      :columns="columns"
+      :request-api="getTreeList"
+      :request-auto="true"
+      :data-callback="dataCallback"
+      :search-col="{ xs: 1, sm: 1, md: 2, lg: 3, xl: 3 }"
+    >
+      <!-- 表格 header 按钮 -->
+      <template #tableHeader>
+        <el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增</el-button>
+      </template>
+      <!-- 表格操作 -->
+      <template #operation="scope">
+        <el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)">查看</el-button>
+        <el-button type="primary" link :icon="EditPen" @click="openDrawer('编辑', scope.row)">编辑</el-button>
+        <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
+      </template>
+    </ProTable>
+    <MenuFormDrawer ref="drawerRef" />
   </div>
 </template>
 
@@ -32,11 +30,11 @@ import { reactive, ref } from "vue";
 import { MenuModel } from "@/api/interface/menuModel";
 import { useHandleData } from "@/hooks/useHandleData";
 import ProTable from "@/components/ProTable/index.vue";
-import UserDrawer from "@/views/proTable/components/UserDrawer.vue";
 import { CirclePlus, QuestionFilled, Delete, EditPen, View } from "@element-plus/icons-vue";
 import { ColumnProps, ProTableInstance } from "@/components/ProTable/interface";
 import { getTreeList, deleteInfo, editInfo, addInfo } from "@/api/modules/menu";
 import { boolStatus, menuTypes } from "@/utils/dict";
+import MenuFormDrawer from "@/views/authority/menu/FormDrawer.vue";
 
 // ProTable 实例
 const proTable = ref<ProTableInstance>();
@@ -79,7 +77,7 @@ const columns = reactive<ColumnProps<MenuModel.ResList>[]>([
   },
   {
     prop: "isHide",
-    label: "是否在菜单中隐藏",
+    label: "是否隐藏",
     tag: true,
     enum: boolStatus
   },
@@ -91,7 +89,7 @@ const columns = reactive<ColumnProps<MenuModel.ResList>[]>([
   },
   {
     prop: "isKeepAlive",
-    label: "是否缓存",
+    label: "是否路由缓存",
     tag: true,
     enum: boolStatus
   },
@@ -106,7 +104,7 @@ const deleteAccount = async (params: MenuModel.ResList) => {
 };
 
 // 打开 drawer(新增、查看、编辑)
-const drawerRef = ref<InstanceType<typeof UserDrawer> | null>(null);
+const drawerRef = ref<InstanceType<typeof MenuFormDrawer> | null>(null);
 const openDrawer = (title: string, row: Partial<MenuModel.ResList> = {}) => {
   const params = {
     title,

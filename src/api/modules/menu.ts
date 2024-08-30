@@ -11,6 +11,11 @@ export const getTreeList = (params: MenuModel.ReqParams) => {
   return http.get<ResPage<MenuModel.ResList>>(PORT1 + `/menu/list`, params);
 };
 
+// 获取树形选择
+export const getSelectTreeList = () => {
+  return http.get(PORT1 + `/menu/select_tree`);
+};
+
 // 新增
 export const addInfo = (params: { id: string }) => {
   return http.post(PORT1 + `/notice/create`, params);

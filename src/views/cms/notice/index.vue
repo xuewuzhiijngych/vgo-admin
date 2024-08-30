@@ -27,7 +27,7 @@ import ProTable from "@/components/ProTable/index.vue";
 import { ProTableInstance, ColumnProps } from "@/components/ProTable/interface";
 import { CirclePlus, Delete, Download, View, EditPen } from "@element-plus/icons-vue";
 import { getList, deleteInfo, exportInfo, addInfo, editInfo, changeInfoStatus } from "@/api/modules/notice";
-import NoticeFormDrawer from "@/views/cms/notice/NoticeFormDrawer.vue";
+import NoticeFormDrawer from "@/views/cms/notice/FormDrawer.vue";
 import { useAuthButtons } from "@/hooks/useAuthButtons";
 import { userStatus } from "@/utils/dict";
 
