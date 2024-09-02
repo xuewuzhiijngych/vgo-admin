@@ -7,8 +7,8 @@
       :columns="columns"
       :request-api="getTreeList"
       :request-auto="true"
-      :data-callback="dataCallback"
       :search-col="{ xs: 1, sm: 1, md: 2, lg: 3, xl: 3 }"
+      :pagination="false"
     >
       <!-- 表格 header 按钮 -->
       <template #tableHeader>
@@ -38,14 +38,6 @@ import MenuFormDrawer from "@/views/authority/menu/FormDrawer.vue";
 
 // ProTable 实例
 const proTable = ref<ProTableInstance>();
-
-// dataCallback 是对于返回的表格数据做处理，如果你后台返回的数据不是 list && total 这些字段，可以在这里进行处理成这些字段
-// 或者直接去 hooks/useTable.ts 文件中把字段改为你后端对应的就行
-const dataCallback = (data: any) => {
-  return {
-    list: data
-  };
-};
 
 // 表格配置项
 const columns = reactive<ColumnProps<MenuModel.ResList>[]>([
@@ -97,9 +89,9 @@ const columns = reactive<ColumnProps<MenuModel.ResList>[]>([
   { prop: "operation", label: "操作", width: 300, fixed: "right" }
 ]);
 
-// 删除用户信息
+// 删除
 const deleteAccount = async (params: MenuModel.ResList) => {
-  await useHandleData(deleteInfo, { id: [params.id] }, `删除【${params.username}】用户`);
+  await useHandleData(deleteInfo, { id: [params.id] }, `删除【${params.title}】及其下级`);
   proTable.value?.getTableList();
 };
 

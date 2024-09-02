@@ -13,25 +13,20 @@ export const getTreeList = (params: MenuModel.ReqParams) => {
 
 // 获取树形选择
 export const getSelectTreeList = () => {
-  return http.get(PORT1 + `/menu/select_tree`);
+  return http.get<Array<any>>(PORT1 + `/menu/select_tree`);
 };
 
 // 新增
 export const addInfo = (params: { id: string }) => {
-  return http.post(PORT1 + `/notice/create`, params);
+  return http.post(PORT1 + `/menu/create`, params);
 };
 
 // 编辑
 export const editInfo = (params: { id: string }) => {
-  return http.post(PORT1 + `/notice/update`, params);
+  return http.post(PORT1 + `/menu/update`, params);
 };
 
 // 删除
 export const deleteInfo = (params: { id: string[] }) => {
-  return http.post(PORT1 + `/notice/delete/` + params.id, params);
-};
-
-// 切换状态
-export const changeInfoStatus = (params: { id: string; status: number }) => {
-  return http.post(PORT1 + `/notice/change`, params);
+  return http.post(PORT1 + `/menu/delete/` + params.id, params);
 };

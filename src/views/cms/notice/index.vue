@@ -87,7 +87,6 @@ const columns = reactive<ColumnProps<Notice.ResList>[]>([
     label: "状态",
     enum: userStatus,
     search: { el: "tree-select", props: { filterable: true } },
-    fieldNames: { label: "Label", value: "Status" },
     render: scope => {
       return (
         <>

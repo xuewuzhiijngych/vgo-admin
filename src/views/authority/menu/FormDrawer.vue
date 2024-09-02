@@ -15,7 +15,14 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="父级" prop="parent_id">
-        <el-cascader v-model="drawerProps.row!.parent_id" :options="options" />
+        <el-tree-select
+          v-model="drawerProps.row!.parent_id"
+          :data="options"
+          filterable
+          :render-after-expand="false"
+          check-strictly
+          style="width: 280px"
+        />
       </el-form-item>
       <el-form-item label="路由标题" prop="title">
         <el-input v-model="drawerProps.row!.title" placeholder="请填写路由标题" clearable></el-input>
@@ -25,6 +32,9 @@
       </el-form-item>
       <el-form-item label="Component" prop="component">
         <el-input v-model="drawerProps.row!.component" placeholder="请填写路由Name" clearable></el-input>
+      </el-form-item>
+      <el-form-item label="Icon" prop="icon">
+        <SelectIcon v-model:icon-value="drawerProps.row!.icon" />
       </el-form-item>
       <el-form-item label="Path" prop="path">
         <el-input v-model="drawerProps.row!.path" placeholder="请填写路由Path" clearable></el-input>
@@ -64,6 +74,7 @@ import { ElMessage, FormInstance } from "element-plus";
 import { MenuModel } from "@/api/interface/menuModel";
 import { menuTypes } from "@/utils/dict";
 import { getSelectTreeList } from "@/api/modules/menu";
+import SelectIcon from "@/components/SelectIcon/index.vue";
 
 const rules = reactive({
   type: [{ required: true, message: "请选择菜单类型" }],
@@ -72,9 +83,18 @@ const rules = reactive({
   sort: [{ required: true, message: "请填写排序" }]
 });
 
+// 获取菜单树
 let options = ref();
 const getMenuTree = async () => {
   const { data } = await getSelectTreeList();
+  const noOne = {
+    label: "无父级-顶级菜单",
+    value: 0,
+    children: []
+  };
+  if (data.length > 0) {
+    data.unshift(noOne);
+  }
   options.value = data;
 };
 
@@ -113,6 +133,7 @@ const handleSubmit = () => {
       ElMessage.success({ message: `${drawerProps.value.title}成功！` });
       drawerProps.value.getTableList!();
       drawerVisible.value = false;
+      await getMenuTree();
     } catch (error) {
       console.log(error);
     }
