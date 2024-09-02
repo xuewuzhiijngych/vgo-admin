@@ -42,10 +42,11 @@ const proTable = ref<ProTableInstance>();
 // 表格配置项
 const columns = reactive<ColumnProps<MenuModel.ResList>[]>([
   { type: "index", label: "#", width: 80 },
-  { prop: "title", label: "路由标题" },
+  { prop: "title", label: "路由标题", align: "left", width: 200 },
   {
     prop: "name",
     label: "路由Name",
+    width: 180,
     headerRender: scope => {
       return (
         <>
@@ -59,8 +60,8 @@ const columns = reactive<ColumnProps<MenuModel.ResList>[]>([
       );
     }
   },
-  { prop: "component", label: "Component" },
-  { prop: "path", label: "Path" },
+  { prop: "component", label: "Component", width: 180 },
+  { prop: "path", label: "Path", width: 180 },
   {
     prop: "type",
     label: "类型",
@@ -69,19 +70,19 @@ const columns = reactive<ColumnProps<MenuModel.ResList>[]>([
   },
   {
     prop: "isHide",
-    label: "是否隐藏",
+    label: "隐藏",
     tag: true,
     enum: boolStatus
   },
   {
     prop: "isAffix",
-    label: "是否固定标签",
+    label: "固定标签",
     tag: true,
     enum: boolStatus
   },
   {
     prop: "isKeepAlive",
-    label: "是否路由缓存",
+    label: "路由缓存",
     tag: true,
     enum: boolStatus
   },
