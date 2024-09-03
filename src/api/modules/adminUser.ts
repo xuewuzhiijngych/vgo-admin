@@ -21,9 +21,19 @@ export const editInfo = (params: { id: string }) => {
   return http.post(PORT1 + `/notice/update`, params);
 };
 
+// 设置角色
+export const setRoles = params => {
+  return http.post(PORT1 + `/admin_user/set/role`, params);
+};
+
+// 获取角色
+export const getRoles = params => {
+  return http.post<Array<any>>(PORT1 + `/admin_user/get/role`, params);
+};
+
 // 删除
 export const deleteInfo = (params: { id: string[] }) => {
-  return http.post(PORT1 + `/admin_user/delete/` + params.id, params);
+  return http.post(PORT1 + `/admin_user/delete`, params);
 };
 
 // 切换状态

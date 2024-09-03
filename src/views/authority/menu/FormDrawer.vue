@@ -33,6 +33,9 @@
       <el-form-item label="Component" prop="component">
         <el-input v-model="drawerProps.row!.component" placeholder="请填写路由Name" clearable></el-input>
       </el-form-item>
+      <el-form-item label="请求接口" prop="api">
+        <el-input v-model="drawerProps.row!.api" placeholder="请填请求接口地址" clearable></el-input>
+      </el-form-item>
       <el-form-item label="Icon" prop="icon">
         <SelectIcon v-model:icon-value="drawerProps.row!.icon" />
       </el-form-item>
@@ -86,7 +89,7 @@ const rules = reactive({
 // 获取菜单树
 let options = ref();
 const getMenuTree = async () => {
-  const { data } = await getSelectTreeList();
+  const { data } = await getSelectTreeList({});
   const noOne = {
     label: "无父级-顶级菜单",
     value: 0,

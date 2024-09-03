@@ -23,7 +23,7 @@ export const editInfo = (params: { id: string }) => {
 
 // 删除
 export const deleteInfo = (params: { id: string[] }) => {
-  return http.post(PORT1 + `/notice/delete/` + params.id, params);
+  return http.post(PORT1 + `/notice/delete`, params);
 };
 
 // 切换状态

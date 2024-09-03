@@ -9,8 +9,8 @@
       <!-- 表格操作 -->
       <template #operation="scope">
         <el-button type="primary" v-auth="'view'" link :icon="View" @click="openDrawer('查看', scope.row)">查看</el-button>
-        <el-button type="primary" v-auth="'edit'" link :icon="EditPen" @click="openDrawer('编辑', scope.row)">编辑</el-button>
-        <el-button type="primary" v-auth="'delete'" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
+        <el-button type="primary" v-auth="'update'" link :icon="EditPen" @click="openDrawer('编辑', scope.row)">编辑</el-button>
+        <el-button type="danger" v-auth="'delete'" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
       </template>
     </ProTable>
     <NoticeFormDrawer ref="drawerRef" />

@@ -12,8 +12,8 @@ export const getTreeList = (params: MenuModel.ReqParams) => {
 };
 
 // 获取树形选择
-export const getSelectTreeList = () => {
-  return http.get<Array<any>>(PORT1 + `/menu/select_tree`);
+export const getSelectTreeList = params => {
+  return http.get<Array<any>>(PORT1 + `/menu/selectTreeDataSource`, params);
 };
 
 // 新增
@@ -28,5 +28,5 @@ export const editInfo = (params: { id: string }) => {
 
 // 删除
 export const deleteInfo = (params: { id: string[] }) => {
-  return http.post(PORT1 + `/menu/delete/` + params.id, params);
+  return http.post(PORT1 + `/menu/delete`, params);
 };
