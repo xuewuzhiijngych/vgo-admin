@@ -3,7 +3,7 @@
     <ProTable ref="proTable" :columns="columns" :request-api="getTableList" :init-param="initParam" :data-callback="dataCallback">
       <!-- 表格 header 按钮 -->
       <template #tableHeader>
-        <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增</el-button>
+        <el-button v-auth="'create'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增</el-button>
         <el-button v-auth="'export'" type="primary" :icon="Download" plain @click="downloadFile">导出数据</el-button>
       </template>
       <!-- 表格操作 -->
@@ -90,7 +90,7 @@ const columns = reactive<ColumnProps<Notice.ResList>[]>([
     render: scope => {
       return (
         <>
-          {BUTTONS.value.status ? (
+          {BUTTONS.value.change ? (
             <el-switch
               model-value={scope.row.status}
               active-text={scope.row.status == 1 ? "启用" : "禁用"}
