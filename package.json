@@ -23,7 +23,7 @@
     "serve": "vite",
     "build:dev": "vue-tsc && vite build --mode development",
     "build:test": "vue-tsc && vite build --mode test",
-    "build:pro": "vue-tsc && vite build --mode production",
+    "build:pro": "vite build --mode production",
     "type:check": "vue-tsc --noEmit --skipLibCheck",
     "preview": "pnpm build:dev && vite preview",
     "lint:eslint": "eslint --fix --ext .js,.ts,.vue ./src",

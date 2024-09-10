@@ -61,7 +61,7 @@ const { BUTTONS } = useAuthButtons();
 
 // 切换用户状态
 const changeStatus = async (row: AdminUser.ResList) => {
-  await useHandleData(changeInfoStatus, { id: row.id, status: row.status == 1 ? 2 : 1 }, `切换【${row.title}】状态`);
+  await useHandleData(changeInfoStatus, { id: row.id, status: row.status == 1 ? 2 : 1 }, `切换【${row.username}】状态`);
   proTable.value?.getTableList();
 };
 
