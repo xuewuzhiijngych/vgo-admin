@@ -58,6 +58,7 @@ const ruleFormRef = ref<FormInstance>();
 const submit = () => {
   ruleFormRef.value!.validate(valid => {
     console.log(valid);
+    console.log(fromModel.value);
   });
 };
 </script>
