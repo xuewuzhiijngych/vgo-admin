@@ -8,17 +8,22 @@ import http from "@/api";
  */
 // 获取列表
 export const getList = (params: AdminUser.ReqParams) => {
-  return http.get<ResPage<AdminUser.ResList>>(PORT1 + `/admin_user`, params);
+  return http.get<ResPage<AdminUser.ResList>>(PORT1 + `/users`, params);
 };
 
 // 新增
 export const addInfo = (params: { id: string }) => {
-  return http.post(PORT1 + `/admin_user/create`, params);
+  return http.post(PORT1 + `/users`, params);
 };
 
 // 编辑
 export const editInfo = (params: { id: string }) => {
-  return http.post(PORT1 + `/notice/update`, params);
+  return http.put(PORT1 + `/users`, params);
+};
+
+// 删除
+export const deleteInfo = (params: { id: string[] }) => {
+  return http.delete(PORT1 + `/users`, params);
 };
 
 // 设置角色
@@ -29,11 +34,6 @@ export const setRoles = params => {
 // 获取角色
 export const getRoles = params => {
   return http.post<Array<any>>(PORT1 + `/admin_user/get/role`, params);
-};
-
-// 删除
-export const deleteInfo = (params: { id: string[] }) => {
-  return http.post(PORT1 + `/admin_user/delete`, params);
 };
 
 // 切换状态
