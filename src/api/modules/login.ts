@@ -32,5 +32,5 @@ export const getAuthButtonListApi = () => {
 
 // 用户退出登录
 export const logoutApi = () => {
-  return http.post(PORT1 + `/admin_user/logout`);
+  return http.post(PORT1 + `/users/logout`);
 };

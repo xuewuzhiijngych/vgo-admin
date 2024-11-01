@@ -28,12 +28,12 @@ export const deleteInfo = (params: { id: string[] }) => {
 
 // 设置角色
 export const setRoles = params => {
-  return http.post(PORT1 + `/admin_user/set/role`, params);
+  return http.post(PORT1 + `/users/set/role`, params);
 };
 
 // 获取角色
 export const getRoles = params => {
-  return http.post<Array<any>>(PORT1 + `/admin_user/get/role`, params);
+  return http.post<Array<any>>(PORT1 + `/users/get/role`, params);
 };
 
 // 切换状态
