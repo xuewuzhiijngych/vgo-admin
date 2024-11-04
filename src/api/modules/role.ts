@@ -8,7 +8,7 @@ import http from "@/api";
  */
 // 获取列表
 export const getList = (params: Role.ReqParams) => {
-  return http.get<ResPage<Role.ResList>>(PORT1 + `/role`, params);
+  return http.get<ResPage<Role.ResList>>(PORT1 + `/roles`, params);
 };
 
 // 获取全部
@@ -18,7 +18,7 @@ export const getAllRole = () => {
 
 // 新增
 export const addInfo = (params: { id: string }) => {
-  return http.post(PORT1 + `/role/create`, params);
+  return http.post(PORT1 + `/roles`, params);
 };
 
 // 设置菜单
@@ -33,10 +33,10 @@ export const getMenus = params => {
 
 // 编辑
 export const editInfo = (params: { id: string }) => {
-  return http.post(PORT1 + `/role/update`, params);
+  return http.put(PORT1 + `/roles`, params);
 };
 
 // 删除
 export const deleteInfo = (params: { id: string[] }) => {
-  return http.post(PORT1 + `/role/delete`, params);
+  return http.delete(PORT1 + `/roles`, params);
 };

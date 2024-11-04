@@ -36,6 +36,11 @@
       <el-form-item label="请求接口" prop="api">
         <el-input v-model="drawerProps.row!.api" placeholder="请填请求接口地址" clearable></el-input>
       </el-form-item>
+      <el-form-item label="请求类型" prop="act" v-if="drawerProps.row!.type === 1 || drawerProps.row!.type === 2">
+        <el-radio-group v-model="drawerProps.row!.act">
+          <el-radio v-for="item in actTypes" :key="item.value" :value="item.value">{{ item.label }}</el-radio>
+        </el-radio-group>
+      </el-form-item>
       <el-form-item label="Icon" prop="icon">
         <SelectIcon v-model:icon-value="drawerProps.row!.icon" />
       </el-form-item>
@@ -75,7 +80,7 @@
 import { ref, onMounted, reactive } from "vue";
 import { ElMessage, FormInstance } from "element-plus";
 import { MenuModel } from "@/api/interface/menuModel";
-import { menuTypes } from "@/utils/dict";
+import { actTypes, menuTypes } from "@/utils/dict";
 import { getSelectTreeList } from "@/api/modules/menu";
 import SelectIcon from "@/components/SelectIcon/index.vue";
 

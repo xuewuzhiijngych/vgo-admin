@@ -8,7 +8,7 @@ import http from "@/api";
  */
 // 获取列表
 export const getTreeList = (params: MenuModel.ReqParams) => {
-  return http.get<ResPage<MenuModel.ResList>>(PORT1 + `/menu/list`, params);
+  return http.get<ResPage<MenuModel.ResList>>(PORT1 + `/menus`, params);
 };
 
 // 获取树形选择
@@ -18,15 +18,15 @@ export const getSelectTreeList = params => {
 
 // 新增
 export const addInfo = (params: { id: string }) => {
-  return http.post(PORT1 + `/menu/create`, params);
+  return http.post(PORT1 + `/menus`, params);
 };
 
 // 编辑
 export const editInfo = (params: { id: string }) => {
-  return http.post(PORT1 + `/menu/update`, params);
+  return http.put(PORT1 + `/menus`, params);
 };
 
 // 删除
 export const deleteInfo = (params: { id: string[] }) => {
-  return http.post(PORT1 + `/menu/delete`, params);
+  return http.delete(PORT1 + `/menus`, params);
 };

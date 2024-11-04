@@ -19,6 +19,16 @@ export const menuTypes = [
 ];
 
 /**
+ * @description：请求类型
+ */
+export const actTypes = [
+  { label: "GET", value: "GET", tagType: "primary" },
+  { label: "POST", value: "POST", tagType: "success" },
+  { label: "PUT", value: "PUT", tagType: "info" },
+  { label: "DELETE", value: "DELETE", tagType: "warning" }
+];
+
+/**
  * @description：用户状态
  */
 export const userStatus = [

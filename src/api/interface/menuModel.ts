@@ -15,6 +15,7 @@ export namespace MenuModel {
     name: string;
     redirect: string;
     api: string;
+    act: string;
     component: string;
     icon: string;
     title: string;

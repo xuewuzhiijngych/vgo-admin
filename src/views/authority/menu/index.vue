@@ -33,7 +33,7 @@ import ProTable from "@/components/ProTable/index.vue";
 import { CirclePlus, QuestionFilled, Delete, EditPen, View } from "@element-plus/icons-vue";
 import { ColumnProps, ProTableInstance } from "@/components/ProTable/interface";
 import { getTreeList, deleteInfo, editInfo, addInfo } from "@/api/modules/menu";
-import { boolStatus, menuTypes } from "@/utils/dict";
+import { actTypes, boolStatus, menuTypes } from "@/utils/dict";
 import MenuFormDrawer from "@/views/authority/menu/FormDrawer.vue";
 
 // ProTable 实例
@@ -63,6 +63,12 @@ const columns = reactive<ColumnProps<MenuModel.ResList>[]>([
   { prop: "component", label: "Component", width: 150 },
   { prop: "path", label: "Path", width: 150 },
   { prop: "api", label: "Api", width: 150 },
+  {
+    prop: "act",
+    label: "请求方式",
+    tag: true,
+    enum: actTypes
+  },
   {
     prop: "type",
     label: "类型",
