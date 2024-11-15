@@ -5,13 +5,16 @@
         <el-tree-select
           v-model="formData!.menus"
           :data="options"
+          tag-type="warning"
           filterable
           multiple
+          clearable
           show-checkbox
           :render-after-expand="false"
           :default-expand-all="true"
           check-strictly
           style="width: 280px"
+          @check="handleChange"
         />
       </el-form-item>
     </el-form>
@@ -72,6 +75,29 @@ let options = ref();
 const getMenuTree = async () => {
   const { data } = await getSelectTreeList({});
   options.value = data;
+};
+
+// 获取所有子节点的值
+const getAllChildValues = (data, targetValue) => {
+  let values = [];
+  function findChildren(data) {
+    for (let item of data) {
+      if (item.value === targetValue) {
+        // 获取当前节点的所有子节点的值
+        const collectValues = children => {
+          children.forEach(child => {
+            values.push(child.value);
+            collectValues(child.children);
+          });
+        };
+        collectValues(item.children); // 收集当前节点的子节点值
+        return;
+      }
+      findChildren(item.children);
+    }
+  }
+  findChildren(data);
+  return values;
 };
 
 onMounted(() => {

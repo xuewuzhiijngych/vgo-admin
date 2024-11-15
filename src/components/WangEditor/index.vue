@@ -17,7 +17,7 @@
 import { nextTick, computed, inject, shallowRef, onBeforeUnmount } from "vue";
 import { IToolbarConfig, IEditorConfig } from "@wangeditor/editor";
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
-import { uploadImg, uploadVideo } from "@/api/modules/upload";
+import { uploadAuto } from "@/api/modules/upload";
 import "@wangeditor/editor/dist/css/style.css";
 import { formContextKey, formItemContextKey } from "element-plus";
 
@@ -96,8 +96,9 @@ props.editorConfig.MENU_CONF!["uploadImage"] = {
     if (!uploadImgValidate(file)) return;
     let formData = new FormData();
     formData.append("file", file);
+    formData.append("type", "any");
     try {
-      const { data } = await uploadImg(formData);
+      const { data } = await uploadAuto(formData);
       insertFn(data.fileUrl);
     } catch (error) {
       console.log(error);
@@ -122,8 +123,9 @@ props.editorConfig.MENU_CONF!["uploadVideo"] = {
     if (!uploadVideoValidate(file)) return;
     let formData = new FormData();
     formData.append("file", file);
+    formData.append("type", "any");
     try {
-      const { data } = await uploadVideo(formData);
+      const { data } = await uploadAuto(formData);
       insertFn(data.fileUrl);
     } catch (error) {
       console.log(error);

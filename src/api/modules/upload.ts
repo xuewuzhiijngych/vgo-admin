@@ -14,3 +14,8 @@ export const uploadImg = (params: FormData) => {
 export const uploadVideo = (params: FormData) => {
   return http.post<Upload.ResFileUrl>(PORT1 + `/upload/local/video`, params, { cancel: false });
 };
+
+// 自动选择上传
+export const uploadAuto = (params: FormData) => {
+  return http.post<Upload.ResFileUrl>(PORT1 + `/upload/auto`, params, { cancel: false });
+};
